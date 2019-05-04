@@ -1,13 +1,15 @@
 export function AppService(type, userData) {
-    let BaseURL = 'https://apipaypal.9lessons.info/apipaypal/';
-//let BaseURL = 'http://localhost/socialapi/';
-
+    let BaseURL = 'http://localhost:8090/api/';
     return new Promise((resolve, reject) =>{
         fetch(BaseURL+type, {
             method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(userData)
         })
-            .then((response) => response.json())
+            .then((response) =>  response.json())
             .then((res) => {
                 resolve(res);
             })

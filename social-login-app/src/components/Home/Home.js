@@ -14,7 +14,8 @@ class Home extends Component {
     componentDidMount() {
         let data = JSON.parse(sessionStorage.getItem('userData'));
         console.log(data);
-        this.setState({name: data.userData.name})
+        this.setState({name: data.name})
+        this.setState({provider_pic: data.provider_pic})
     }
 
     render() {
@@ -25,7 +26,7 @@ class Home extends Component {
 
         return (
             <div >
-                Welcome {this.state.name}
+                Welcome {this.state.name} <img src={this.state.provider_pic}/>
             </div>
         );
     }

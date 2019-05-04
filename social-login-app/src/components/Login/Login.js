@@ -27,7 +27,7 @@ class Login extends Component {
         const responseFacebook = (response) => {
             console.log("facebook console");
             console.log(response);
-            //this.register(response, 'facebook');
+            this.register(response, 'facebook');
         }
 
         const responseGoogle = (response) => {
@@ -127,8 +127,9 @@ class Login extends Component {
             };
         }
         if (data) {
-            AppService('register', data).then((result) => {
+            AppService('users', data).then((result) => {
                 let responseJson = result;
+                console.log("responseJson:"+JSON.stringify(responseJson));
                 sessionStorage.setItem("userData", JSON.stringify(responseJson));
                 this.setState({redirect: true});
             });
