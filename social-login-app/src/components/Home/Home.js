@@ -9,6 +9,7 @@ class Home extends Component {
             name:'',
             redirect: false,
         };
+        this.logout = this.logout.bind(this);
     }
 
     componentDidMount() {
@@ -18,6 +19,16 @@ class Home extends Component {
         this.setState({provider_pic: data.provider_pic})
     }
 
+    logout(e){
+        let choice= window.confirm("Are you sure to Logout......?");
+        if(choice){
+            sessionStorage.removeItem('userData');
+            this.props.history.push('/')
+        }else{
+            //do nothing.
+        }
+
+    }
     render() {
 
         if(!sessionStorage.getItem('userData') || this.state.redirect){
@@ -27,6 +38,8 @@ class Home extends Component {
         return (
             <div >
                 Welcome {this.state.name} <img src={this.state.provider_pic}/>
+                <br/>
+                <button onClick={this.logout}>Logout</button>
             </div>
         );
     }

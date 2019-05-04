@@ -48,8 +48,10 @@ public class UserResource {
 	}
 
 	@DeleteMapping("/users/{id}")
-	public void deleteUser(@PathVariable long id) {
+	public ResponseEntity<Object> deleteUser(@PathVariable long id) {
 		UserRepository.deleteById(id);
+		
+		return new ResponseEntity<Object>("User Deleted successfully ID : "+id, HttpStatus.OK);
 	}
 
 	@PostMapping(value="/users",headers = "Accept=application/json",produces= { MediaType.APPLICATION_JSON_VALUE })
